@@ -1,6 +1,6 @@
 import React from "react";
 import "./HomePage.css";
-import { Button, Navbar } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 import SideBar from "../SideBar/SideBar.js";
 import Drawer from "@material-ui/core/Drawer";
 
@@ -35,15 +35,15 @@ class HomePage extends React.Component {
         </Drawer>
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-2 offset-10">
+            <div class="col-lg-2 offset-lg-10">
                 {/* button to open sideBar/Drawer */}
-              <Button
+              <button
                 type="button"
-                className="custom-btn"
+                className ="btn btn-default"
                 onClick={this.setVisible}
               >
                 + Add Events
-              </Button>
+              </button>
             </div>
           </div>
         </div>
