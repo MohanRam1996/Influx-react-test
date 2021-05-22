@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import HomePage from "./components/HomePage/HomePage";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <HomePage />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
-
