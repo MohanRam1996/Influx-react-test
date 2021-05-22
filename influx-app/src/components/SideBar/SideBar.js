@@ -1,5 +1,6 @@
 import React from "react";
 import "./SideBar.css";
+import axios from "axios";
 
 class Sidebar extends React.Component {
   constructor() {
@@ -8,10 +9,55 @@ class Sidebar extends React.Component {
       data: [],
     };
   }
+
+  componentDidMount = () => {
+    axios
+      .get("./Sample.json")
+      .then((result) => {
+        console.log(result);
+        this.setState({ data: result.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   render() {
     return (
       <React.Fragment>
-        <div className ="sidebar-width">content</div>
+        <div className="sidebar-width">
+          <h3>Events</h3>
+          <hr />
+          {this.state.data.length !== 0
+            ? this.state.data.map((item) => (
+                <React.Fragment>
+                  <div className="row row-margin">
+                    <div className="col-md-3 " key={item.id}>
+                      <img
+                        src={item.leagueimageurl}
+                        aria-hidden
+                        alt="League Image"
+                        className="custom-img"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = "./asserts/placeholder-grey.jpeg";
+                        }}
+                      />
+                    </div>
+                    <div className="col-md-9 ">
+                      <span className="title">{item.displaytitle}</span>
+                      <br/>
+                      <button className="btn btn-outline-primary rounded-pill">{item.channelInfo.name}</button>
+                    </div>
+                  </div>
+                  <hr />
+                </React.Fragment>
+              ))
+            : null}
+        </div>
+        <button type="button" className="btn-custom">
+          CUSTOM EVENT
+        </button>
       </React.Fragment>
     );
   }

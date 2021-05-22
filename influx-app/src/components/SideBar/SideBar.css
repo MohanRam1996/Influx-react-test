@@ -1,3 +1,44 @@
 .sidebar-width{
-    width: 45vw;
+    width: 35vw;
+    padding: 5% 6%;
+   overflow:overlay ;
+}
+.custom-img{
+    width: 6em;
+    height : auto;
+    filter: grayscale(100%);
+}
+
+.border{
+    border:2em dotted;
+}
+.title{
+    font-size: 17px;
+    margin-left: 1.2em;
+    font-weight: bold;
+}
+.btn-custom{
+    width:100% !important;
+    padding:0.7em 2.5em ;
+    background-color:#ed4321!important;
+    border-color:#ed4321  !important;
+    color: white !important; 
+}
+.row-margin{
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.btn-outline-primary,.btn-outline-primary:active,.btn-outline-primary,.btn-outline-primary:focus{
+  border-color:#ed4321  !important;
+  color: #ed4321 !important; 
+  background-color: white !important;
+  margin-top: 1em;
+  margin-left: 2em;
+  font-size: 10px !important;
+  padding: 0.5em 2.5em !important;
+  margin-top: 1.5em;
+}
+hr {
+   background-color: rgb(219, 204, 204) !important; 
 }

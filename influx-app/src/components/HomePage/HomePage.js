@@ -19,30 +19,30 @@ class HomePage extends React.Component {
   render() {
     return (
       <React.Fragment>
-          {/* A Simple NavBar */}
+        {/* A Simple NavBar */}
         <Navbar bg="dark" variant="dark">
           <Navbar.Brand href="#home">Influx</Navbar.Brand>
         </Navbar>
         <br />
-        {/* Drawer from Material Ui that opens on click of Add Events Button */}
+        {/* SideBar from Material Ui that opens on click of Add Events Button */}
         <Drawer
           anchor="right"
           open={this.state.sideBar}
           onClose={this.setVisible}
         >
-            {/* SideBar contents populated via separate component */}
+          {/* SideBar contents populated via separate component */}
           <SideBar />
         </Drawer>
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-2 offset-lg-10">
-                {/* button to open sideBar/Drawer */}
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-lg-2 offset-lg-10">
+              {/* button to open SideBar */}
               <button
                 type="button"
-                className ="btn btn-default"
+                className="btn btn-default"
                 onClick={this.setVisible}
               >
-                + Add Events
+                + ADD EVENTS
               </button>
             </div>
           </div>

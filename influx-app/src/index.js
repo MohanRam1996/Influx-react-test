@@ -5,8 +5,8 @@ import HomePage from "./components/HomePage/HomePage";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.Fragment>
     <HomePage />
-  </React.StrictMode>,
+  </React.Fragment>,
   document.getElementById("root")
 );
