@@ -14,7 +14,6 @@ class Sidebar extends React.Component {
     axios
       .get("./Sample.json")
       .then((result) => {
-        console.log(result);
         this.setState({ data: result.data });
       })
       .catch((error) => {
@@ -30,9 +29,9 @@ class Sidebar extends React.Component {
           <hr />
           {this.state.data.length !== 0
             ? this.state.data.map((item) => (
-                <React.Fragment>
+                <div key={item.id}>
                   <div className="row row-margin">
-                    <div className="col-md-3 " key={item.id}>
+                    <div className="col-md-3 ">
                       <img
                         src={item.leagueimageurl}
                         aria-hidden
@@ -46,12 +45,14 @@ class Sidebar extends React.Component {
                     </div>
                     <div className="col-md-9 ">
                       <span className="title">{item.displaytitle}</span>
-                      <br/>
-                      <button className="btn btn-outline-primary rounded-pill">{item.channelInfo.name}</button>
+                      <br />
+                      <button className="btn btn-outline-primary rounded-pill">
+                        {item.channelInfo.name}
+                      </button>
                     </div>
                   </div>
                   <hr />
-                </React.Fragment>
+                </div>
               ))
             : null}
         </div>
