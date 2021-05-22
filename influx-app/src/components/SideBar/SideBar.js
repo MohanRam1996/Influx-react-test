@@ -7,13 +7,19 @@ class Sidebar extends React.Component {
     super();
     this.state = {
       data: [],
+      displayData :[]
     };
+  }
+
+  populateDisplayData =(data) =>{
+
   }
 
   componentDidMount = () => {
     axios
       .get("./Sample.json")
       .then((result) => {
+        this.populateDisplayData(result.data);
         this.setState({ data: result.data });
       })
       .catch((error) => {
@@ -31,7 +37,7 @@ class Sidebar extends React.Component {
             ? this.state.data.map((item) => (
                 <div key={item.id}>
                   <div className="row row-margin">
-                    <div className="col-md-3 ">
+                    <div className="col-md-3 offset-md-1">
                       <img
                         src={item.leagueimageurl}
                         aria-hidden
@@ -43,7 +49,7 @@ class Sidebar extends React.Component {
                         }}
                       />
                     </div>
-                    <div className="col-md-9 ">
+                    <div className="col-md-7">
                       <span className="title">{item.displaytitle}</span>
                       <br />
                       <button className="btn btn-outline-primary rounded-pill">

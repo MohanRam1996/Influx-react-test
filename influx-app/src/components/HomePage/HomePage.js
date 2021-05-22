@@ -35,7 +35,7 @@ class HomePage extends React.Component {
         </Drawer>
         <div className="container-fluid">
           <div className="row">
-            <div className="col-lg-2 offset-lg-10">
+            <div className="col-lg-3 offset-lg-9 col-md-3 offset-md-8 col-sm-5 offset-sm-7 col-xs-4 offset-xs-5">
               {/* button to open SideBar */}
               <button
                 type="button"
