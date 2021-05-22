@@ -7,13 +7,55 @@ class Sidebar extends React.Component {
     super();
     this.state = {
       data: [],
-      displayData :[]
+      displayData: [],
     };
   }
 
-  populateDisplayData =(data) =>{
+  checkIfEventExists = (arr, title) => {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].title === title) {
+        return i;
+      }
+    }
+    return -1;
+  };
 
-  }
+  populateDisplayData = (data) => {
+    let temp = [];
+    data.forEach((value) => {
+      let pos = this.checkIfEventExists(temp, value.title);
+      if (pos !== -1) {
+        temp[pos].events = [
+          ...temp[pos].events,
+          {
+            id: value.id,
+            location: value.locations[0].location_name,
+            eventdate: value.eventdate,
+            eventtime: value.eventtime,
+            channel: value.channelInfo.name,
+            status: value.status,
+          },
+        ];
+      } else {
+        temp.push({
+          title: value.title,
+          leagueimageurl: value.leagueimageurl,
+          events: [
+            {
+              id: value.id,
+              location: value.locations[0].location_name,
+              eventdate: value.eventdate,
+              eventtime: value.eventtime,
+              channel: value.channelInfo.name,
+              status: value.status,
+            },
+          ],
+        });
+      }
+    });
+    console.log(temp);
+    this.setState({ displayData: temp });
+  };
 
   componentDidMount = () => {
     axios
@@ -33,9 +75,9 @@ class Sidebar extends React.Component {
         <div className="sidebar-width">
           <h3>Events</h3>
           <hr />
-          {this.state.data.length !== 0
-            ? this.state.data.map((item) => (
-                <div key={item.id}>
+          {this.state.displayData.length !== 0
+            ? this.state.displayData.map((item) => (
+                <div key={item.title}>
                   <div className="row row-margin">
                     <div className="col-md-3 offset-md-1">
                       <img
@@ -50,11 +92,28 @@ class Sidebar extends React.Component {
                       />
                     </div>
                     <div className="col-md-7">
-                      <span className="title">{item.displaytitle}</span>
+                      <span className="title">{item.title}</span>
                       <br />
-                      <button className="btn btn-outline-primary rounded-pill">
+                      {/* <button className="btn btn-outline-primary rounded-pill">
                         {item.channelInfo.name}
-                      </button>
+                      </button> */}
+                      {/* {item.events.map((event) => (
+                        <React.Fragment key={event.id}>
+                          {event.id}
+                          <br />
+                          {event.status}
+                          <br />
+                          {event.location}
+                          <br />
+                          {event.eventdate}
+                          <br />
+                          {event.eventtime}
+                          <br />
+                          {event.channel}
+                          <br />
+                          <br />
+                        </React.Fragment>
+                      ))} */}
                     </div>
                   </div>
                   <hr />
