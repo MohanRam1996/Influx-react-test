@@ -94,12 +94,13 @@ class Sidebar extends React.Component {
                     <div className="col-md-7">
                       <span className="title">{item.title}</span>
                       <br />
+
                       {/* <button className="btn btn-outline-primary rounded-pill">
                         {item.channelInfo.name}
                       </button> */}
-                      {/* {item.events.map((event) => (
+                      {item.events.map((event) => (
                         <React.Fragment key={event.id}>
-                          {event.id}
+                          {/* {event.id}
                           <br />
                           {event.status}
                           <br />
@@ -111,9 +112,22 @@ class Sidebar extends React.Component {
                           <br />
                           {event.channel}
                           <br />
+                          <br /> */}
+                          <br/>
+                          <input
+                            type="checkbox"
+                            class="custom-check-box"
+                            id={event.id}
+                            value={event.id}
+                           checked ={event.status === 1? true:false}
+                          />
+                          <label for={event.id}>
+                            &nbsp; &nbsp;{event.location}
+                          </label>
+                          <br />
                           <br />
                         </React.Fragment>
-                      ))} */}
+                      ))}
                     </div>
                   </div>
                   <hr />
