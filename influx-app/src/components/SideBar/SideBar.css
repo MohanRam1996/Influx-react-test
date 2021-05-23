@@ -42,3 +42,14 @@
 hr {
    background-color: rgb(219, 204, 204) !important; 
 }
+
+.custom-check-box{
+    border-color:#ed4321  !important;
+    background-color: white !important;
+    width: 25px; height:25px;
+    margin-right: 10px;
+}
+.event-time{
+    margin-left: 3.3em;
+    font-size:  14px;
+}

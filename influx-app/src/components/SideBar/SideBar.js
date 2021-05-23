@@ -11,6 +11,8 @@ class Sidebar extends React.Component {
     };
   }
 
+  handleChange = (id) => {};
+
   checkIfEventExists = (arr, title) => {
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].title === title) {
@@ -53,7 +55,6 @@ class Sidebar extends React.Component {
         });
       }
     });
-    console.log(temp);
     this.setState({ displayData: temp });
   };
 
@@ -75,65 +76,86 @@ class Sidebar extends React.Component {
         <div className="sidebar-width">
           <h3>Events</h3>
           <hr />
-          {this.state.displayData.length !== 0
-            ? this.state.displayData.map((item) => (
-                <div key={item.title}>
-                  <div className="row row-margin">
-                    <div className="col-md-3 offset-md-1">
-                      <img
-                        src={item.leagueimageurl}
-                        aria-hidden
-                        alt="League Image"
-                        className="custom-img"
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = "./asserts/placeholder-grey.jpeg";
-                        }}
-                      />
-                    </div>
-                    <div className="col-md-7">
-                      <span className="title">{item.title}</span>
-                      <br />
+          <div className="accordion accordion-flush" id="accordionEvents">
+            {this.state.displayData.length !== 0
+              ? this.state.displayData.map((item, count) => (
+                  <div key={count}>
+                    <div className="row row-margin">
+                      <div className="accordion-item">
+                        <div
+                          className="accordion-header"
+                          id={"heading" + count}
+                        >
+                          <button
+                            className="accordion-button"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target={"#collapse" + count}
+                            aria-expanded="false"
+                            aria-controls={"collapse" + count}
+                          >
+                            <div className="col-md-3">
+                              <img
+                                src={item.leagueimageurl}
+                                aria-hidden
+                                alt="League Image"
+                                className="custom-img"
+                                onError={(e) => {
+                                  e.target.onerror = null;
+                                  e.target.src =
+                                    "./asserts/placeholder-grey.jpeg";
+                                }}
+                              />
+                            </div>
+                            <div className="col-md-7">
+                              <span className="title">{item.title}</span>
+                              <br />
 
-                      {/* <button className="btn btn-outline-primary rounded-pill">
+                              {/* <button className="btn btn-outline-primary rounded-pill">
                         {item.channelInfo.name}
                       </button> */}
-                      {item.events.map((event) => (
-                        <React.Fragment key={event.id}>
-                          {/* {event.id}
-                          <br />
-                          {event.status}
-                          <br />
-                          {event.location}
-                          <br />
-                          {event.eventdate}
-                          <br />
-                          {event.eventtime}
-                          <br />
-                          {event.channel}
-                          <br />
-                          <br /> */}
-                          <br/>
-                          <input
-                            type="checkbox"
-                            class="custom-check-box"
-                            id={event.id}
-                            value={event.id}
-                           checked ={event.status === 1? true:false}
-                          />
-                          <label for={event.id}>
-                            &nbsp; &nbsp;{event.location}
-                          </label>
-                          <br />
-                          <br />
-                        </React.Fragment>
-                      ))}
+                            </div>
+                          </button>
+                        </div>
+                        <div
+                          id={"collapse" + count}
+                          className="accordion-collapse collapse"
+                          aria-labelledby={"heading" + count}
+                          data-bs-parent="#accordionEvents"
+                        >
+                          <div className="accordion-body">
+                            {" "}
+                            {item.events.map((event) => (
+                              <React.Fragment key={event.id}>
+                                <br />
+                                <input
+                                  type="checkbox"
+                                  className="custom-check-box"
+                                  id={event.id}
+                                  value={event.id}
+                                  checked={event.status === 1 ? true : false}
+                                  onChange={(e) => this.handleChange(event.id)}
+                                />
+                                <label htmlFor={event.id}>
+                                  &nbsp; &nbsp;{event.location}
+                                </label>
+                                <br />
+                                <span className="event-time">
+                                  {event.eventdate}
+                                  {event.eventtime}
+                                </span>
+                                <br />
+                              </React.Fragment>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
                     </div>
+                    <hr />
                   </div>
-                  <hr />
-                </div>
-              ))
-            : null}
+                ))
+              : null}
+          </div>
         </div>
         <button type="button" className="btn-custom">
           CUSTOM EVENT
