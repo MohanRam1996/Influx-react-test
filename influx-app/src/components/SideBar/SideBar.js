@@ -88,11 +88,9 @@ class Sidebar extends React.Component {
   };
 
   render() {
-    console.log(
-      "********************************************"
-    );
+    console.log("********************************************");
     this.state.data.forEach((a) => {
-       console.log(
+      console.log(
         a.title + " " + a.locations[0].location_name + " " + a.status
       );
     });
@@ -156,21 +154,24 @@ class Sidebar extends React.Component {
                             {item.events.map((event) => (
                               <tr key={event.id}>
                                 <th scope="row">
-                                  <input
-                                    type="checkbox"
-                                    className="custom-check-box"
+                                  <label className="main">
+                                    <input  type="checkbox"
+                                    className="main"
                                     id={event.id}
                                     value={event.id}
                                     checked={event.status === 1 ? true : false}
                                     onChange={(e) =>
                                       this.handleChange(event.id)
-                                    }
-                                  />
+                                    } />
+                                    <span className="geekmark"></span>
+                                  </label>
                                 </th>
                                 <td
                                   onClick={(e) => this.handleChange(event.id)}
                                 >
-                                  <div className ="location-name"><b>&nbsp; &nbsp;{event.location}</b></div>
+                                  <div className="location-name">
+                                    <b>&nbsp; &nbsp;{event.location}</b>
+                                  </div>
                                   <span
                                     htmlFor={event.id}
                                     className="event-time"
@@ -188,7 +189,7 @@ class Sidebar extends React.Component {
                             ))}
                           </tbody>
                         </table>
-                        <hr/>
+                        <hr />
                       </div>
                     </div>
                     {/* Accordian Body Ends Here */}

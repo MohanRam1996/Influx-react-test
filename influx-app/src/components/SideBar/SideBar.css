@@ -24,10 +24,6 @@
     border-color:#ed4321  !important;
     color: white !important; 
 }
-/* .row-margin{
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
-} */
 
 .btn-outline-primary,.btn-outline-primary:active,.btn-outline-primary,.btn-outline-primary:focus{
   border-color:#ed4321  !important;
@@ -45,12 +41,6 @@ hr {
    margin-top: 0em !important;
 }
 
-.custom-check-box{
-    border-color:#ed4321  !important;
-    background-color: white !important;
-    width: 25px; height:25px;
-    margin-right: 10px;
-}
 .event-time{
     margin-left: 1em !important;
     font-size:  12px;
@@ -96,4 +86,80 @@ input[type=checkbox]:checked {
 }
 .location-name{
     margin-bottom: 0em !important;
+}
+th{
+    padding-left: 1em !important;
+    padding-right: 0em !important ;
+}
+
+.table td, .table th {
+    padding: .75rem;
+}
+
+.main {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+    margin-right: 0.5em ;
+    margin-top: 0.2em;
+}
+
+/* Hide the default checkbox */
+input[type=checkbox] {
+    visibility: hidden;
+}
+
+/* Creating a custom checkbox
+based on demand */
+.geekmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 35px;
+    width: 35px;
+    background-color: white;
+    border: 1px solid;
+    border-color: #ed4321;
+    border-radius:3px;
+    border-bottom: 2px solid;
+    border-bottom-color: #ed4321 ;
+    border-right: 2px solid;
+    border-right-color: #ed4321 ;
+}
+
+/* Specify the background color to be
+shown when checkbox is checked */
+.main input:checked ~ .geekmark {
+    background-color: white;
+}
+
+/* Checkmark to be shown in checkbox */
+/* It is not be shown when not checked */
+.geekmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Display checkmark when checked */
+.main input:checked ~ .geekmark:after {
+    display: block;
+  
+}
+
+/* Styling the checkmark using webkit */
+/* Rotated the rectangle by 45 degree and
+showing only two border to make it look
+like a tickmark */
+.main .geekmark:after {
+    left: 12px;
+    bottom: 9px;
+    width: 8px;
+    height: 20px;
+    border: solid #df2f0c;
+    border-width: 0 4px 4px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
