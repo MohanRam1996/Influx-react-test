@@ -154,7 +154,7 @@ class Sidebar extends React.Component {
                           <tbody>
                             {item.events.map((event) => (
                               <tr key={event.id}>
-                                <td scope="row">
+                                <th scope="row">
                                   <input
                                     type="checkbox"
                                     className="custom-check-box"
@@ -165,7 +165,7 @@ class Sidebar extends React.Component {
                                       this.handleChange(event.id)
                                     }
                                   />
-                                </td>
+                                </th>
                                 <td
                                   onClick={(e) => this.handleChange(event.id)}
                                 >
@@ -188,6 +188,7 @@ class Sidebar extends React.Component {
                             ))}
                           </tbody>
                         </table>
+                        <hr/>
                       </div>
                     </div>
                     {/* Accordian Body Ends Here */}
