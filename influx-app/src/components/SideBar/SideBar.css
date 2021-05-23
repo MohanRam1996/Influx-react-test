@@ -53,3 +53,6 @@ hr {
     margin-left: 3.3em;
     font-size:  14px;
 }
+.accordion-button::after{
+    display: none;
+}

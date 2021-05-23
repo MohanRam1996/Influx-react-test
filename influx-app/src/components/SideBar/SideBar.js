@@ -87,7 +87,7 @@ class Sidebar extends React.Component {
                           id={"heading" + count}
                         >
                           <button
-                            className="accordion-button"
+                            className="accordion-button collapsed"
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target={"#collapse" + count}
