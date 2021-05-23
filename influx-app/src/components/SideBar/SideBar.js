@@ -45,7 +45,7 @@ class Sidebar extends React.Component {
   populateDisplayData = (data) => {
     let temp = [];
     data.forEach((value) => {
-      let pos = this.checkIfEventExists(temp, value.title);
+      let pos = this.checkIfEventExists(temp, value.displaytitle);
       if (pos !== -1) {
         temp[pos].events = [
           ...temp[pos].events,
@@ -59,7 +59,7 @@ class Sidebar extends React.Component {
         ];
       } else {
         temp.push({
-          title: value.title,
+          title: value.displaytitle,
           leagueimageurl: value.leagueimageurl,
           events: [
             {
@@ -89,13 +89,14 @@ class Sidebar extends React.Component {
 
   render() {
     console.log(
-      "***************************************************************"
+      "********************************************"
     );
     this.state.data.forEach((a) => {
-      console.log(
+       console.log(
         a.title + " " + a.locations[0].location_name + " " + a.status
       );
     });
+    //console.log(this.state.data)
     return (
       <React.Fragment>
         <div className="sidebar-width">
@@ -106,7 +107,7 @@ class Sidebar extends React.Component {
             {this.state.displayData.length !== 0
               ? this.state.displayData.map((item, count) => (
                   <div key={count}>
-                    <div className="row">
+                    <div className="row ">
                       <div className="accordion-item">
                         <div
                           className="accordion-header"
@@ -120,7 +121,7 @@ class Sidebar extends React.Component {
                             aria-expanded="false"
                             aria-controls={"collapse" + count}
                           >
-                            <div className="col-md-3">
+                            <div className="col-md-3 ">
                               <img
                                 src={item.leagueimageurl}
                                 aria-hidden
@@ -133,7 +134,7 @@ class Sidebar extends React.Component {
                                 }}
                               />
                             </div>
-                            <div className="col-md-7">
+                            <div className="col-md-7 ">
                               <span className="title">{item.title}</span>
                             </div>
                           </button>
@@ -150,7 +151,7 @@ class Sidebar extends React.Component {
                       data-bs-parent="#accordionEvents"
                     >
                       <div className="accordion-body">
-                        <table class="table table-striped">
+                        <table className="table table-striped">
                           <tbody>
                             {item.events.map((event) => (
                               <tr key={event.id}>
@@ -169,8 +170,7 @@ class Sidebar extends React.Component {
                                 <td
                                   onClick={(e) => this.handleChange(event.id)}
                                 >
-                                  <label>&nbsp; &nbsp;{event.location}</label>
-                                  <br />
+                                  <div className ="location-name"><b>&nbsp; &nbsp;{event.location}</b></div>
                                   <span
                                     htmlFor={event.id}
                                     className="event-time"
