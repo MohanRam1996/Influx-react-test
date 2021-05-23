@@ -24,7 +24,13 @@ class Sidebar extends React.Component {
 
   generateDate = (value) => {
     let date = moment(value, "YYYY-MM-DD HH:mm:ss");
-    return date.tz('America/Denver').format('hh:mm A')+" MST, "+date.format("dddd")+", "+date.format("MMM DD");
+    return (
+      date.tz("America/Denver").format("hh:mm A") +
+      " MST, " +
+      date.format("dddd") +
+      ", " +
+      date.format("MMM DD")
+    );
   };
 
   checkIfEventExists = (arr, title) => {
@@ -95,11 +101,12 @@ class Sidebar extends React.Component {
         <div className="sidebar-width">
           <h3>Events</h3>
           <hr />
+          {/* Accordian Header Starts Here  */}
           <div className="accordion accordion-flush" id="accordionEvents">
             {this.state.displayData.length !== 0
               ? this.state.displayData.map((item, count) => (
                   <div key={count}>
-                    <div className="row row-margin">
+                    <div className="row">
                       <div className="accordion-item">
                         <div
                           className="accordion-header"
@@ -128,48 +135,62 @@ class Sidebar extends React.Component {
                             </div>
                             <div className="col-md-7">
                               <span className="title">{item.title}</span>
-                              <br />
-
-                              {/* <button className="btn btn-outline-primary rounded-pill">
-                        {item.channelInfo.name}
-                      </button> */}
                             </div>
                           </button>
-                        </div>
-                        <div
-                          id={"collapse" + count}
-                          className="accordion-collapse collapse"
-                          aria-labelledby={"heading" + count}
-                          data-bs-parent="#accordionEvents"
-                        >
-                          <div className="accordion-body">
-                            {" "}
-                            {item.events.map((event) => (
-                              <React.Fragment key={event.id}>
-                                <br />
-                                <input
-                                  type="checkbox"
-                                  className="custom-check-box"
-                                  id={event.id}
-                                  value={event.id}
-                                  checked={event.status === 1 ? true : false}
-                                  onChange={(e) => this.handleChange(event.id)}
-                                />
-                                <label htmlFor={event.id}>
-                                  &nbsp; &nbsp;{event.location}
-                                </label>
-                                <br />
-                                <span htmlFor={event.id} className="event-time">
-                                  {this.generateDate(event.eventtime)}
-                                </span>
-                                <br />
-                              </React.Fragment>
-                            ))}
-                          </div>
                         </div>
                       </div>
                     </div>
                     <hr />
+                    {/* Accordian Header Ends Here */}
+                    {/* Accordian Body Starts Here */}
+                    <div
+                      id={"collapse" + count}
+                      className="accordion-collapse collapse"
+                      aria-labelledby={"heading" + count}
+                      data-bs-parent="#accordionEvents"
+                    >
+                      <div className="accordion-body">
+                        <table class="table table-striped">
+                          <tbody>
+                            {item.events.map((event) => (
+                              <tr key={event.id}>
+                                <td scope="row">
+                                  <input
+                                    type="checkbox"
+                                    className="custom-check-box"
+                                    id={event.id}
+                                    value={event.id}
+                                    checked={event.status === 1 ? true : false}
+                                    onChange={(e) =>
+                                      this.handleChange(event.id)
+                                    }
+                                  />
+                                </td>
+                                <td
+                                  onClick={(e) => this.handleChange(event.id)}
+                                >
+                                  <label>&nbsp; &nbsp;{event.location}</label>
+                                  <br />
+                                  <span
+                                    htmlFor={event.id}
+                                    className="event-time"
+                                  >
+                                    {this.generateDate(event.eventtime)}
+                                  </span>
+                                </td>
+                                <td>
+                                  <button className="btn btn-outline-primary rounded-pill">
+                                    {" "}
+                                    {event.channel}{" "}
+                                  </button>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    {/* Accordian Body Ends Here */}
                   </div>
                 ))
               : null}
