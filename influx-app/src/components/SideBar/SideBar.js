@@ -1,6 +1,7 @@
 import React from "react";
 import "./SideBar.css";
 import axios from "axios";
+import moment from "moment-timezone";
 
 class Sidebar extends React.Component {
   constructor() {
@@ -11,7 +12,20 @@ class Sidebar extends React.Component {
     };
   }
 
-  handleChange = (id) => {};
+  handleChange = (id) => {
+    let data = this.state.data;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id === id) {
+        data[i].status = data[i].status === 0 ? 1 : 0;
+      }
+    }
+    this.populateDisplayData(data);
+  };
+
+  generateDate = (value) => {
+    let date = moment(value, "YYYY-MM-DD HH:mm:ss");
+    return date.tz('America/Denver').format('hh:mm A')+" MST, "+date.format("dddd")+", "+date.format("MMM DD");
+  };
 
   checkIfEventExists = (arr, title) => {
     for (let i = 0; i < arr.length; i++) {
@@ -32,7 +46,6 @@ class Sidebar extends React.Component {
           {
             id: value.id,
             location: value.locations[0].location_name,
-            eventdate: value.eventdate,
             eventtime: value.eventtime,
             channel: value.channelInfo.name,
             status: value.status,
@@ -46,7 +59,6 @@ class Sidebar extends React.Component {
             {
               id: value.id,
               location: value.locations[0].location_name,
-              eventdate: value.eventdate,
               eventtime: value.eventtime,
               channel: value.channelInfo.name,
               status: value.status,
@@ -55,7 +67,7 @@ class Sidebar extends React.Component {
         });
       }
     });
-    this.setState({ displayData: temp });
+    this.setState({ data: data, displayData: temp });
   };
 
   componentDidMount = () => {
@@ -63,7 +75,6 @@ class Sidebar extends React.Component {
       .get("./Sample.json")
       .then((result) => {
         this.populateDisplayData(result.data);
-        this.setState({ data: result.data });
       })
       .catch((error) => {
         console.log(error);
@@ -71,6 +82,14 @@ class Sidebar extends React.Component {
   };
 
   render() {
+    console.log(
+      "***************************************************************"
+    );
+    this.state.data.forEach((a) => {
+      console.log(
+        a.title + " " + a.locations[0].location_name + " " + a.status
+      );
+    });
     return (
       <React.Fragment>
         <div className="sidebar-width">
@@ -140,9 +159,8 @@ class Sidebar extends React.Component {
                                   &nbsp; &nbsp;{event.location}
                                 </label>
                                 <br />
-                                <span className="event-time">
-                                  {event.eventdate}
-                                  {event.eventtime}
+                                <span htmlFor={event.id} className="event-time">
+                                  {this.generateDate(event.eventtime)}
                                 </span>
                                 <br />
                               </React.Fragment>
