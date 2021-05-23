@@ -70,12 +70,12 @@ hr {
 }
 .table-striped>tbody>tr:nth-child(odd)>td, 
 .table-striped>tbody>tr:nth-child(odd)>th {
-   background-color: #f7ede5a6; 
+   background-color: #f5e2df ; 
    
 }
 .table-striped>tbody>tr:nth-child(even)>td, 
 .table-striped>tbody>tr:nth-child(even)>th {
-   background-color: #cfab8c93; 
+   background-color: #ebafa3 ; 
 }
 
 input[type=checkbox]:checked {
