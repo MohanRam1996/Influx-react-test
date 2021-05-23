@@ -8,7 +8,7 @@ class Sidebar extends React.Component {
     super();
     /*  STATE values stored are : 
       1. 'data' - stores all the values from sample.json
-      2. 'displayData - stores the information needed to be displayed
+      2. 'displayData' - stores the information needed to be displayed
           format ; 
           [
            {
@@ -36,7 +36,7 @@ class Sidebar extends React.Component {
   input : id of the object present in Sample.json 
 
   Note : this function first updates the state in data (Sample.json copy) 
-  and then uses it to regenerate displayData*/
+  and then uses it to regenerate displayData */
   handleChange = (id) => {
     let data = this.state.data;
     for (let i = 0; i < data.length; i++) {
@@ -62,7 +62,7 @@ class Sidebar extends React.Component {
 
   /* This function is used by populateDisplayData to check if a 
   paticular event is already present in the list 
-  input : it takes the array and the display title of the event as input*/
+  input : it takes the array and the display title of the event as input */
   checkIfEventExists = (arr, title) => {
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].title === title) {
@@ -73,7 +73,7 @@ class Sidebar extends React.Component {
   };
 
   /* This method is used to generate the displayData array  
-  input : array containg json objects from (Sample.json)*/
+  input : array containg json objects from (Sample.json) */
   populateDisplayData = (data) => {
     let temp = [];
     data.forEach((value) => {
@@ -179,7 +179,7 @@ class Sidebar extends React.Component {
                     <hr />
                     {/* Accordian Header Ends Here */}
                     {/* Accordian Body Starts Here 
-                     This displays the checkboxes ,location ,timings and channel info*/}
+                     This displays the checkboxes ,location ,timings and channel info */}
                     <div
                       id={"collapse" + count}
                       className="accordion-collapse collapse"
